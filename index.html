@@ -79,17 +79,24 @@
 
 <hr>
 
-<h4> Code Fencing</h4>
+<h4> Code display</h4>
 
 <q>  Can I set subject/content of email using mailto:?</q>
-
 <br>
 
 <a href ="https://stackoverflow.com/questions/4782068/can-i-set-subject-content-of-email-using-mailto"> Link to access the code</a>
 
 
 <pre>
-    <a href="mailto:no-one@snai1mai1.com?subject=free chocolate">example</a>
+
+    <?php
+$encodedTo = rawurlencode($message->to);
+$encodedSubject = rawurlencode($message->subject);
+$encodedBody = rawurlencode($message->body);
+$uri = "mailto:$encodedTo?subject=$encodedSubject&body=$encodedBody";
+$encodedUri = htmlspecialchars($uri);
+echo "<a href=\"$encodedUri\">Send email</a>";
+?>
 
 </pre>
 
